@@ -1,0 +1,1 @@
+This program uses a random forest classifier to predict the presence or absence of heart disease based on various patient attributes. You can modify the program to use different machine learning algorithms or techniques to improve its performance.
