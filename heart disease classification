@@ -1,0 +1,56 @@
+import pandas as pd # Import the pandas library and assign it the alias 'pd'
+
+# Load the Cleveland Heart Disease dataset
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data"
+df = pd.read_csv(url, header=None)
+
+# Rename columns for clarity
+df.columns = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "target"]
+
+# Make predictions on the testing set
+y_pred = rfc.predict(X_test)
+
+# Import the necessary library
+from sklearn.metrics import accuracy_score, classification_report # Import accuracy_score and classification_report
+
+# Evaluate the model's performance
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+# Convert categorical variables to numerical variables
+df["sex"] = df["sex"].map({0: 0, 1: 1})
+df["cp"] = df["cp"].map({1: 1, 2: 2, 3: 3, 4: 4})
+df["fbs"] = df["fbs"].map({0: 0, 1: 1})
+df["restecg"] = df["restecg"].map({0: 0, 1: 1, 2: 2})
+df["exang"] = df["exang"].map({0: 0, 1: 1})
+df["ca"] = df["ca"].map({0: 0, 1: 1, 2: 2, 3: 3, 4: 4})
+df["thal"] = df["thal"].map({3: 0, 6: 1, 7: 2})
+
+# Define features (X) and target (y)
+X = df.drop("target", axis=1)
+y = df["target"]
+
+# Import the necessary library
+from sklearn.model_selection import train_test_split
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Import the necessary library
+from sklearn.ensemble import RandomForestClassifier
+
+# Initialize and train a random forest classifier
+rfc = RandomForestClassifier(n_estimators=100, random_state=42)
+rfc.fit(X_train, y_train)
+# Make predictions on the testing set
+y_pred = rfc.predict(X_test)
+
+# Import the necessary library
+from sklearn.metrics import accuracy_score, classification_report # Import accuracy_score and classification_report
+
+# Evaluate the model's performance
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
